@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { UploadInstance, UploadProps, UploadRawFile } from 'element-plus';
+import type {UploadInstance, UploadProps, UploadRawFile} from 'element-plus';
 
-import { ref } from 'vue';
+import {ref} from 'vue';
 
 import {
   ElButton,
@@ -54,9 +54,9 @@ const onSuccess1 = async (file: any) => {
   console.log(file);
   if (file && file.type === 'application/vnd.ms-excel') {
     const dataBinary = await readFile(file);
-    const workBook = xlsx.read(dataBinary, { type: 'binary', cellDates: true });
+    const workBook = xlsx.read(dataBinary, {type: 'binary', cellDates: true});
     const workSheet = workBook.Sheets[workBook.SheetNames[0]];
-    const excelData = xlsx.utils.sheet_to_json(workSheet, { header: 1 });
+    const excelData = xlsx.utils.sheet_to_json(workSheet, {header: 1});
     const da = [];
     excelData.forEach((res: Array) => {
       // if (res[4]) {
@@ -81,12 +81,12 @@ const onSuccess2 = async (file: any) => {
   if (
     file &&
     file.type ===
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
   ) {
     const dataBinary = await readFile(file);
-    const workBook = xlsx.read(dataBinary, { type: 'binary', cellDates: true });
+    const workBook = xlsx.read(dataBinary, {type: 'binary', cellDates: true});
     const workSheet = workBook.Sheets[workBook.SheetNames[0]];
-    const excelData = xlsx.utils.sheet_to_json(workSheet, { header: 1 });
+    const excelData = xlsx.utils.sheet_to_json(workSheet, {header: 1});
     const da = [];
     excelData.forEach((res: Array) => {
       if (res[4]) {
@@ -150,51 +150,53 @@ const i18Json = () => {
 </script>
 
 <template>
-  <div style="width: 100%; height: 100%; background: #fff">
-    <ElForm :model="form" label-width="auto" style="max-width: 600px">
-      <ElFormItem label="上传国际化中英对照表格1">
-        <ElUpload
-          ref="upload1"
-          :auto-upload="false"
-          :limit="1"
-          :on-change="onSuccess1"
-          :on-exceed="handleExceed1"
-          action="alert"
-          class="upload-demo"
-        >
-          <template #trigger>
-            <ElButton type="primary">请选择文件</ElButton>
-          </template>
+  <div class="p-5">
+    <div style="width: 100%; height: 100%; ">
+      <ElForm :model="form" label-width="auto" style="max-width: 600px">
+        <ElFormItem label="上传国际化中英对照表格1">
+          <ElUpload
+            ref="upload1"
+            :auto-upload="false"
+            :limit="1"
+            :on-change="onSuccess1"
+            :on-exceed="handleExceed1"
+            action="alert"
+            class="upload-demo"
+          >
+            <template #trigger>
+              <ElButton type="primary">请选择文件</ElButton>
+            </template>
 
-          <template #tip>
-            <div class="el-upload__tip text-red">仅限上传一个文件</div>
-          </template>
-        </ElUpload>
-      </ElFormItem>
-      <ElFormItem label="上传国际化中英对照表格2">
-        <ElUpload
-          ref="upload2"
-          :auto-upload="false"
-          :limit="1"
-          :on-change="onSuccess2"
-          :on-exceed="handleExceed2"
-          action="alert"
-          class="upload-demo"
-        >
-          <template #trigger>
-            <ElButton type="primary">请选择文件</ElButton>
-          </template>
+            <template #tip>
+              <div class="el-upload__tip text-red">仅限上传一个文件</div>
+            </template>
+          </ElUpload>
+        </ElFormItem>
+        <ElFormItem label="上传国际化中英对照表格2">
+          <ElUpload
+            ref="upload2"
+            :auto-upload="false"
+            :limit="1"
+            :on-change="onSuccess2"
+            :on-exceed="handleExceed2"
+            action="alert"
+            class="upload-demo"
+          >
+            <template #trigger>
+              <ElButton type="primary">请选择文件</ElButton>
+            </template>
 
-          <template #tip>
-            <div class="el-upload__tip text-red">仅限上传一个文件</div>
-          </template>
-        </ElUpload>
-      </ElFormItem>
-    </ElForm>
+            <template #tip>
+              <div class="el-upload__tip text-red">仅限上传一个文件</div>
+            </template>
+          </ElUpload>
+        </ElFormItem>
+      </ElForm>
 
-    <ElButton type="primary" @click="i18Json">
-      开始生成国际化JSON文件
-    </ElButton>
+      <ElButton type="primary" @click="i18Json">
+        开始生成国际化JSON文件
+      </ElButton>
+    </div>
   </div>
 </template>
 

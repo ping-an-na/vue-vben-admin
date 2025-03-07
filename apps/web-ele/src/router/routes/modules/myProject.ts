@@ -1,6 +1,6 @@
+import type { RouteRecordRaw } from 'vue-router';
 
-import type {RouteRecordRaw} from 'vue-router';
-import {BasicLayout, IFrameView} from '#/layouts';
+import { BasicLayout, IFrameView } from '#/layouts';
 // 项目
 const routes: RouteRecordRaw[] = [
   {
@@ -11,7 +11,7 @@ const routes: RouteRecordRaw[] = [
       order: 3,
       title: '我的项目',
     },
-    name: 'myProject',
+    name: 'MyProject',
     path: '/myProject',
     children: [
       {

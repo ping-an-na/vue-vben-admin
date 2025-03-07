@@ -212,7 +212,7 @@ async function deepTraverse(obj) {
 </script>
 
 <template>
-  <div style="width: 100%; height: 100%; background: #fff">
+  <div style="width: 100%; height: 100%">
     <ElForm :model="form" label-width="auto" style="max-width: 600px">
       <ElFormItem label="上传国际化中文文件">
         <ElUpload
