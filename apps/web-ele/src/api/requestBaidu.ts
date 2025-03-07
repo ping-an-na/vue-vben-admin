@@ -1,24 +1,24 @@
 /**
  * 该文件可自行根据业务逻辑进行调整
  */
-import type { HttpResponse } from '@vben/request';
+import type {HttpResponse} from '@vben/request';
 
-import { useAppConfig } from '@vben/hooks';
-import { preferences } from '@vben/preferences';
+import {useAppConfig} from '@vben/hooks';
+import {preferences} from '@vben/preferences';
 import {
   authenticateResponseInterceptor,
   errorMessageResponseInterceptor,
   RequestClient,
 } from '@vben/request';
-import { useAccessStore } from '@vben/stores';
+import {useAccessStore} from '@vben/stores';
 
-import { ElMessage } from 'element-plus';
+import {ElMessage} from 'element-plus';
 
-import { useAuthStore } from '#/store';
+import {useAuthStore} from '#/store';
 
-import { refreshTokenApi } from './core';
+import {refreshTokenApi} from './core';
 
-const { apiURL } = useAppConfig(import.meta.env, import.meta.env.PROD);
+const {apiURL} = useAppConfig(import.meta.env, import.meta.env.PROD);
 
 function createRequestClient(baseURL: string) {
   console.log(baseURL)
@@ -73,13 +73,17 @@ function createRequestClient(baseURL: string) {
   // response数据解构
   client.addResponseInterceptor<HttpResponse>({
     fulfilled: (response) => {
-      const { data: responseData, status } = response;
+      return response.data
+      const {data: responseData, status} = response;
+      console.log(111)
 
-      const { code, data } = responseData;
+      const {code, data} = responseData;
+      console.log(status)
+
       if (status >= 200 && status < 400 && code === 0) {
         return data;
       }
-      throw Object.assign({}, response, { response });
+      throw Object.assign({}, response, {response});
     },
   });
 
@@ -109,6 +113,6 @@ function createRequestClient(baseURL: string) {
   return client;
 }
 
-export const requestClient = createRequestClient(apiURL);
+export const requestClientB = createRequestClient('/baidu');
 
-export const baseRequestClient = new RequestClient({ baseURL: apiURL });
+export const baseRequestClient = new RequestClient({baseURL: apiURL});

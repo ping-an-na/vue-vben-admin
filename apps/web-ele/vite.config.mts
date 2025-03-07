@@ -20,6 +20,13 @@ export default defineConfig(async () => {
             target: 'http://localhost:5320/api',
             ws: true,
           },
+          '/baidu': {
+            changeOrigin: true,
+            rewrite: (path) => path.replace(/^\/baidu/, ''),
+            // mock代理目标地址
+            target: 'https://openapi.youdao.com',
+            ws: true,
+          },
         },
       },
     },

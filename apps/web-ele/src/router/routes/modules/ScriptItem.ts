@@ -1,6 +1,7 @@
-import type { RouteRecordRaw } from 'vue-router';
 
-import { BasicLayout } from '#/layouts';
+import type {RouteRecordRaw} from 'vue-router';
+
+import {BasicLayout, } from '#/layouts';
 // 项目
 const routes: RouteRecordRaw[] = [
   {
